@@ -41,4 +41,34 @@ public class LongPositionTest {
 		assertTrue(transaction.endDay == 7);
 	}
 	
+	@Test
+	public void twoEqualWaves(){
+		int[] input = {10,12,14,16,10,12,14,16};
+		LongTransaction transaction = LongPosition.optimalLongTransaction(input);
+		assertTrue(transaction.startDay == 1);
+		assertTrue(transaction.startPrice == 10);
+		assertTrue(transaction.endPrice == 16);
+		assertTrue(transaction.endDay == 4);
+	}
+	
+	@Test
+	public void smallPikeAfterLongFall(){
+		int[] input = {40,30,20,10,9,8,10,12};
+		LongTransaction transaction = LongPosition.optimalLongTransaction(input);
+		assertTrue(transaction.startDay == 6);
+		assertTrue(transaction.startPrice == 8);
+		assertTrue(transaction.endPrice == 12);
+		assertTrue(transaction.endDay == 8);
+	}
+	
+	@Test
+	public void smallPikeAfterStablePeriod(){
+		int[] input = {10,10,10,10,8,10,12, 12, 12};
+		LongTransaction transaction = LongPosition.optimalLongTransaction(input);
+		assertTrue(transaction.startDay == 5);
+		assertTrue(transaction.startPrice == 8);
+		assertTrue(transaction.endPrice == 12);
+		assertTrue(transaction.endDay == 7);
+	}
+	
 }
