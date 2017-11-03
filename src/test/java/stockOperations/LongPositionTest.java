@@ -31,4 +31,14 @@ public class LongPositionTest {
 		assertTrue(transaction.endDay == 2);
 	}
 	
+	@Test
+	public void optimumAfterBigFall(){
+		int[] input = {10,22,23,7,10,15,22,20};
+		LongTransaction transaction = LongPosition.optimalLongTransaction(input);
+		assertTrue(transaction.startDay == 4);
+		assertTrue(transaction.startPrice == 7);
+		assertTrue(transaction.endPrice == 22);
+		assertTrue(transaction.endDay == 7);
+	}
+	
 }
